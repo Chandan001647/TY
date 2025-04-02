@@ -1,0 +1,193 @@
+Practical 1 : 
+Using nikto 
+(Direct)
+-> nikto -h siesascs.edu.in
+-> nikto -h 65.108.27.161
+(Indirect)
+-> cat > domain.txt
+    siesascs.edi.in
+    jaihindicollage.in
+-> nikto -h domain.txt 
+(To save result in any file)
+-> nikto -h siesascs.edu.in -o result.txt
+
+(Checking vulnerability of any domain)
+->nikto -h scanme.nmap.org -o out.html -Format html
+
+-> nikto -h scanme.nmap.org -output out.txt
+-> nikto -h scanme.nmap.org -o scan.txt
+Practical 2 : Implement N/W Scanning
+ a)Using Nmap Command
+N map is a tool which is used to scan the network or map the network
+-> sudo namp -sn siesascs.edu.in 
+
+-> sudo namp -sn shaadi.com
+
+-> sudo namp shaadi.com
+
+-> nmap -p 1-1000 shaadi.com
+
+C) using Windows command
+1)ipconfig => show IP Addresses -> ipconfig 
+
+2)netstat => show network status of the current machine
+
+-> netstat 
+
+3)netstat –a => This all connection and listening port
+
+-> netstat -a 
+
+4) netstat –e => This show the Ethernet statistics such as number of bits send and receive
+
+-> netstat -e 
+
+5) netstat –o => This display owning process id associated to each connection
+-> netstat -o
+6) netstat –n => This show only active connection at that time
+-> netstat -n 
+
+7) network statistics
+
+->netstat –s
+8) 
+
+-> netstat -q pipeline findstr LISTENING
+
+9)network statistics with port
+-> netstat -u
+
+10) network Scanning using netstat tool
+-> netstat -u q| findstr Listening
+
+Or 
+-> netstat -u q| findstr ESTABLISHED 
+
+Practical 3 : 
+(DNS chek using nslookup)
+-> sudo nslookup shaadi.com
+   Or
+-> sudo nslookup -type=a shaadi.com
+
+(Detailed of mail server)
+-> sudo nslookup -type=mx shaadi.com
+
+(Detailed of name server)
+-> sudo nslookup -type=nx shaadi.com
+()
+-> nikto -h https://foo.com -output output.txt
+-> cat output.txt()
+- nikto -h scanme.nmap.org -port 8000
+
+Practical 4: Target host Scanning using hping3
+
+-> sudo hping3 -8 1-30 -A - V google.com
+
+(hping should use ICMP echo request (ping request) to probe the target host this 
+option is used to perform basic N/W connectivity task.
+-A option: this enables acknowledgement mode this is used to check firewall 
+rules, identifying open ports and detect the presence of target ports.
+-V option: this enables vervose gives detailed information about the packet sent 
+and received
+S option: this tells hping to send a TCP SYN. A TCP SYN packet is used to 
+initiate a TCP connection.
+-Domain name: target post
+-p 80: this denotes destination port is http.
+-c 5: this denotes number of packets sent is 5 ) 
+-> sudo hping3 -S siesascs.edu.in -p 80 -c 5
+
+-> sudo hping3 --scan 10-100 -V jaihindcollage.com
+(--scan: this enables TCP Port scanning.)
+->sudo hping3 -S -p 4444 siesascs.edu.in 
+
+->sudo hping3 -c 1 -S -p 80 --win 514 --ttl 60 siesascs.edu.in 
+( c 1: send only 1 packet
+-S: send TCP SYN packet
+-p 80: set destination port as Http
+--win 514: set TCP window size as 514 byte
+--ttl 60: set time to live as 60 hops(jump)
+)
+
+-> hping3 -v
+
+-> hping3 -V instagram.com
+
+Practical 5 : Using kali linux for Netstat 
+ i)netstat –a => This all connection and listening port
+-a => all the information about network status
+-> sudo netstat -a 
+
+ii)Ip a =>To check IP address
+
+-> ip addr 
+
+-> ip a 
+
+iii) netstat –i => Check the interfaces
+
+-> sudo netstat -i
+
+iv) netstat –r => Check routing information
+-> sudo netstat -r 
+
+v)netstat –h 
+-> netstat -h
+
+Practical 6 : Implement NET-BIOS Enumeration (nbtscan,Whatweb,home ctl)
+
+(NBTSCAN )
+
+1-> nbtscan  192.168.1.25 
+
+2->nbtscan -r 192.168.1.25 
+
+(WHATWEB )
+
+sudo whatweb siesascs.edu.in
+(Home ctl )
+1 -> msfconsole 
+2-> search 
+3->search type:auxiliary http
+4->use 26
+5->exit 
+
+6->msfconsole 
+7-> color false 
+8->search 
+9->color true 
+10->search 
+11->ip a
+
+Practical 7 : Implement SMNP Enumeration (using Hostname ctl(control),net view,nmap)
+
+1-> hostnamectl
+2-> sudo hostnamectl set-hostname kali-pentest
+3->hostmanectl 
+4->hostnamectl -h
+5->hostnamectl --help
+6->man hostmanectl 
+7->hostnamectl -j
+8->hostnamectl --machine=CONTAINER
+
+Practical 8:netview is not working
+nmap
+
+1->nmap -sU -p 161 192.168.9.106
+
+2->nmap -sU -p 161 --script=snmp-processes 192.168.9.106
+
+3-> nmap -sU -p 161 --script=snmp-interface 192.168.9.106
+
+4->nmap -sU -p 161 --script=snmp-info 192.168.9.106
+
+(nmap –-script ssl-enum-ciphers -p 443 <domain name or ip address>:- this is used 
+Secure Socket (SLL) vulnerability Scanning (cmd not perform)
+)
+
+1->namp -sS 127.0.0.1/8
+
+2->nmap -p 80 --open 10.0.2.16/24
+
+3->fping -a -g 10.0.2.0/24
+(In the above image I have mentioned the ip address that can be used (this command not 
+excuted yet)(set R <HOST> AND THEN run))
